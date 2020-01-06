@@ -1,0 +1,23 @@
+#verde{
+    background-color: green;
+}
+#amarillo{
+    background-color: yellow;
+}
+#rojo{
+    background-color: red;
+}
+#azul{
+    background-color: blue;
+}
+
+.cuadrado{
+    padding-top: 15%;
+    opacity: 50% ;
+    transition: opacity 1000ms;
+}
+
+.destacar{
+    opacity: 100%;
+    transition: all 1000ms;
+}
