@@ -1,7 +1,9 @@
-const $cuadro = document.querySelectorAll(".cuadrado"),
-    $botonEmpezar = document.querySelector("#boton-empezar"),
-    $mostrarPlayer = document.querySelector(".anuncios h2"),
-    $mostrarRonda = document.querySelector(".anuncios h3");
+const   $cuadro         = document.querySelectorAll(".cuadrado"),
+        $botonEmpezar   = document.querySelector("#boton-empezar"),
+        $mostrarPlayer  = document.querySelector(".anuncios h2"),
+        $mostrarRonda   = document.querySelector(".anuncios h3"),
+        $segundos       = document.querySelector("#segundos"),
+        $minutos        = document.querySelector("#minutos");
 
 const colores = [
     "amarillo",
@@ -10,11 +12,17 @@ const colores = [
     "rojo"
 ];
 
+let segundos    = 0,
+    minutos     = 0,
+    horas       = 0;
+
 let secuenciaComputadora = [],
 
     secuenciaUsuario = [],
 
-    ronda = 0;
+    ronda = 0,
+
+    cronometro;
 
 function obtenerCuadroAleatorio() {
     const indice = Math.floor(Math.random() * colores.length);
@@ -48,7 +56,7 @@ function manejarInputUsuario(color) {
     console.log(color)
     secuenciaUsuario.push(color);
     checkUserInput();
-    if(checkUserInput === "error"){
+    if (checkUserInput === "error") {
         console.log("fin del juego")
         return false;
     };
@@ -108,24 +116,44 @@ function reset() {
     secuenciaUsuario = [];
     secuenciaComputadora = [];
     ronda = 0;
+    segundos = 0;
+    minutos = 0;
+    horas = 0;
 };
 
 function iniciarJuego() {
-    if($botonEmpezar.textContent = "Reiniciar"){
-        $botonEmpezar.textContent = "Empezar"
-    };
+    clearInterval(cronometro);
+    cronometro = setInterval(mostrarCronometro, 1000);
+    $botonEmpezar.textContent = "Reiniciar";
     reset();
     manejarRonda();
 };
 
-function gameOver(){
-    $botonEmpezar.textContent = "Reiniciar";
+function gameOver() {
+    clearInterval(cronometro);
     Swal.fire({
         icon: 'error',
         title: 'Fin del juego',
-        text:  `Perdiste en la ronda ${ronda}.`,
+        text: `Perdiste en la ronda ${ronda}.`,
         footer: '<a href>Volver a jugar</a>'
-      });
+    });
+}
+
+function tiempoTranscurrido() {
+    const inicio = new Date().getTime();
+    const transcurrido = new Date().getTime() - inicio;
+    const segundosTranscurridos = transcurrido / 1000;
+    return segundosTranscurridos;
 }
 
 $botonEmpezar.onclick = iniciarJuego;
+
+function mostrarCronometro() {
+    if (segundos === 59) {
+        segundos = 0;
+        minutos = minutos + 1;
+    };
+    segundos++;
+    $segundos.textContent = segundos;
+    $minutos.textContent = minutos;
+};
