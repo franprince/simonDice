@@ -1,0 +1,23 @@
+{
+  "name": "simondice",
+  "version": "1.0.0",
+  "description": "Juego de Simón Dice",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/franprince/simonDice.git"
+  },
+  "author": "Fran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/franprince/simonDice/issues"
+  },
+  "homepage": "https://github.com/franprince/simonDice#readme",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "sweetalert2": "^9.5.4"
+  }
+}
