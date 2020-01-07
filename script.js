@@ -48,19 +48,26 @@ function manejarInputUsuario(color) {
     console.log(color)
     secuenciaUsuario.push(color);
     checkUserInput();
+    if(checkUserInput === "error"){
+        console.log("fin del juego")
+        return false;
+    };
 
     if (secuenciaUsuario.length === secuenciaComputadora.length) {
         bloquearInputUsuario();
         setTimeout(manejarRonda, 1000);
     };
-};
 
-function checkUserInput() {
-    const i = ronda - 1;
-    if (secuenciaComputadora[i] !== secuenciaUsuario[i]) {
-        gameOver();
+    function checkUserInput() {
+        const i = secuenciaUsuario.length - 1;
+        if (secuenciaComputadora[i] !== secuenciaUsuario[i]) {
+            gameOver();
+            bloquearInputUsuario();
+            return "error";
+        };
     };
 };
+
 
 function bloquearInputUsuario() {
     $cuadro.forEach((cuadrito) => {
@@ -104,19 +111,21 @@ function reset() {
 };
 
 function iniciarJuego() {
+    if($botonEmpezar.textContent = "Reiniciar"){
+        $botonEmpezar.textContent = "Empezar"
+    };
     reset();
     manejarRonda();
 };
 
 function gameOver(){
-
+    $botonEmpezar.textContent = "Reiniciar";
     Swal.fire({
         icon: 'error',
         title: 'Fin del juego',
         text:  `Perdiste en la ronda ${ronda}.`,
         footer: '<a href>Volver a jugar</a>'
       });
-      Swal.fire.footer.onclick = reset;
 }
 
 $botonEmpezar.onclick = iniciarJuego;
