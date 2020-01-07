@@ -53,11 +53,9 @@ function desbloquearUsuario() {
 
 function manejarInputUsuario(color) {
     resaltar(color);
-    console.log(color)
     secuenciaUsuario.push(color);
     checkUserInput();
     if (checkUserInput === "error") {
-        console.log("fin del juego")
         return false;
     };
 
