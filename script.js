@@ -55,7 +55,7 @@ function manejarInputUsuario(color) {
     resaltar(color);
     secuenciaUsuario.push(color);
     checkUserInput();
-    if (checkUserInput === "error") {
+    if (checkUserInput === false) {
         return false;
     };
 
@@ -69,7 +69,7 @@ function manejarInputUsuario(color) {
         if (secuenciaComputadora[i] !== secuenciaUsuario[i]) {
             gameOver();
             bloquearInputUsuario();
-            return "error";
+            return false;
         };
     };
 };
