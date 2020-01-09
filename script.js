@@ -135,14 +135,7 @@ function gameOver() {
         text: `Perdiste en la ronda ${ronda}.`,
         footer: '<a href>Volver a jugar</a>'
     });
-}
-
-function tiempoTranscurrido() {
-    const inicio = new Date().getTime();
-    const transcurrido = new Date().getTime() - inicio;
-    const segundosTranscurridos = transcurrido / 1000;
-    return segundosTranscurridos;
-}
+};
 
 $botonEmpezar.onclick = iniciarJuego;
 
